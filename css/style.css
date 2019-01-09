@@ -4,14 +4,50 @@ h1 {
 
 #cart {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     border-top: 5px solid black;
     border-bottom: 5px solid black;
+    text-align:center;
 }
 
 .column {
-    width: 18%;
+    width: 14%;
     padding: 25px 0px;
+    border-left: 5px solid;
+}
+
+.videoLink{
+    cursor:pointer;
+}
+
+#heading{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    border-top: 5px solid black;
+}
+
+.headhead{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    width: 14%;
+    padding: 25px 0px;
+    border-left: 5px solid;
+}
+
+.imageTag{
+    width:auto;
+    height:auto;
+}
+
+#deleteColumn div{
+    display: block;
+    font-size: 18px;
+    height: 100px;
+    font-weight: bold;
+    margin: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #images img {
@@ -26,12 +62,14 @@ h1 {
     height: 100px;
     font-weight: bold;
     margin: 20px;
+    font-family: 'Merriweather', serif;
 }
 
 #artists p {
     font-size: 18px;
     height: 100px;
     margin: 20px;
+    font-family: 'Lato', sans-serif;
 }
 
 #lengths p {
@@ -39,6 +77,7 @@ h1 {
     height: 100px;
     margin: 20px;
     text-align: right;
+    font-family: 'Raleway', sans-serif;
 }
 
 #links a {
@@ -47,6 +86,7 @@ h1 {
     height: 100px;
     font-weight: bold;
     margin: 20px;
+    font-family: 'Coiny', cursive;
 }
 
 #form {
