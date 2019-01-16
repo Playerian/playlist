@@ -27,6 +27,11 @@ h1 {
     border-top: 5px solid black;
 }
 
+.arrow{
+    width: 25px;
+    height: 25px;
+}
+
 .headhead{
     text-align: center;
     font-size: 25px;

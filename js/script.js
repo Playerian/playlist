@@ -33,6 +33,22 @@ var videoLinks = ["https://www.youtube.com/watch?v=RE87rQkXdNw",
 'https://www.youtube.com/watch?v=i7pbnTI1_LM'
 ];
 
+function moveArray(arr, index, up){
+    if (index < 0 || index >= arr.length - 1){
+        return arr;
+    }
+    if (up){
+        let first = arr[index];
+        let second = arr[index - 1];
+        arr.splice(index - 1, 2, first, second);
+    }else{
+        let first = arr[index + 1];
+        let second = arr[index];
+        arr.splice(index, 2, first, second);
+    }
+    return arr;
+}
+
 function displaySongInfo(){
     songName.forEach(function(song, index) {
         let $song = $('<p>');
@@ -41,11 +57,17 @@ function displaySongInfo(){
         //delete part
         let $div = $('<div>').addClass('deleteHome');
         $('#deleteColumn').append($div);
+        let $arrowUp = $('<img>').attr('num', index).addClass('arrow').addClass('up');
+        let $arrowDown = $('<img>').attr('num', index).addClass('arrow').addClass('down');
+        $arrowUp.attr('src', 'https://static.thenounproject.com/png/38-200.png');
+        $arrowDown.attr('src', 'https://cdn0.iconfinder.com/data/icons/arrows-11/100/arrow-2-512.png');
         let $delete = $('<button>');
         $delete.text('delete');
-        $delete.attr('id', index);
+        $delete.attr('num', index);
         $delete.addClass('delete');
         $div.append($delete);
+        $div.append($arrowUp);
+        $div.append($arrowDown);
     });
     artists.forEach(function(artist, index) {
         let $artist = $('<p>');
@@ -74,13 +96,38 @@ function displaySongInfo(){
     // BELOW Use forEach Loop to display the data from each of your array's in the correct div
     $('.delete').off('click');
     $('.delete').on('click', function(){
-        let i = $(this).attr('id');
+        let i = $(this).attr('num');
         console.log(i);
         songName.splice(i, 1);
         songLength.splice(i, 1);
         videoLinks.splice(i, 1);
         imageLinks.splice(i, 1);
         artists.splice(i, 1);
+        emptySongInfo();
+        displaySongInfo();
+    });
+    $('.arrow').on('click', function(){
+        let item = $(this);
+        let i = parseInt(item.attr('num'));
+        if (item.attr('class').includes('up')){
+            //going up
+            if (parseInt(i) !== 0){
+                moveArray(songName, i, true);
+                moveArray(songLength, i, true);
+                moveArray(videoLinks, i, true);
+                moveArray(imageLinks, i, true);
+                moveArray(artists, i, true);
+            }
+        }else{
+            //going down
+            if (parseInt(i) !== songName.length - 1){
+                moveArray(songName, i);
+                moveArray(songLength, i);
+                moveArray(videoLinks, i);
+                moveArray(imageLinks, i);
+                moveArray(artists, i);
+            }
+        }
         emptySongInfo();
         displaySongInfo();
     });
